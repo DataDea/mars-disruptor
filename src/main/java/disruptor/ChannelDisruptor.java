@@ -2,6 +2,7 @@ package disruptor;
 
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.EventTranslator;
+import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
@@ -52,9 +53,8 @@ public class ChannelDisruptor<T> {
         return disruptor;
     }
 
-    public Disruptor<T> start() {
-        this.disruptor.start();
-        return this.disruptor;
+    public RingBuffer<T> start() {
+        return this.disruptor.start();
     }
 
     public void publisher(EventTranslator<T> event) {

@@ -1,5 +1,6 @@
 package channel;
 
+import com.lmax.disruptor.RingBuffer;
 import disruptor.ChannelDisruptor;
 import disruptor.DittoEventHandler;
 import event.DittoEvent;
@@ -17,7 +18,9 @@ public class DittoChannel {
         DittoEventFactory dittoEventFactory = new DittoEventFactory();
         DittoEventHandler dittoEventHandler = new DittoEventHandler();
         ChannelDisruptor<DittoEvent> dittoEventChannelDisruptor  = new ChannelDisruptor<>(1024, 8, dittoEventFactory, dittoEventHandler);
-        dittoEventChannelDisruptor.start();
+        RingBuffer<DittoEvent> ringBuffer = dittoEventChannelDisruptor.start();
+        int bufferSize = ringBuffer.getBufferSize();
+        System.out.println(bufferSize);
         for (;;) {
             dittoEventChannelDisruptor.publisher(DittoEvent.INSTANCE);
         }
