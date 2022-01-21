@@ -14,6 +14,6 @@ public class DittoEventHandler implements EventHandler<DittoEvent> {
 
     @Override
     public void onEvent(DittoEvent event, long sequence, boolean endOfBatch) throws Exception {
-        System.out.println("我收到了。。。。" + event);
+        System.out.println("event body ===>" + event.getBody() + "sequence ===> " + sequence);
     }
 }

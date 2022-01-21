@@ -1,11 +1,14 @@
 package event;
 
+import lombok.Data;
+
 /**
  * @author yanghai10
  * @ClassName DittoEvent
  * @Description DITTOevnet
  * @date 2022/1/21 10:45
  */
+@Data
 public class DittoEvent extends AbstractEvent {
 
     private DittoEvent() {
